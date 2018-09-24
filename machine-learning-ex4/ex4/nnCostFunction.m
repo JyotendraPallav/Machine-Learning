@@ -115,9 +115,10 @@ for i=1:m
   h = a3;
 
   Error3 =h - Y;
-  Error2 = (Theta2)' * Error3 .* sigmoidGradient(a2);
+  Error2 = (Theta2(:,2:end))' * Error3 .* sigmoidGradient(z2);
   Delta2 = Delta2 + Error3 * a2';
-  Delta1 = Delta1 + Error2(2:end) * a1';
+  Delta1 = Delta1 + (Error2 * a1');
+
 
 % Backpropagation computation ends here
 % fprintf('\nCalculated backpropagation for training data %i... \n',i)
